@@ -2,6 +2,10 @@
   "version": 2,
   "builds": [
     {
+      "src": "public/**/*",
+      "use": "@vercel/static"
+    },
+    {
       "src": "index.html",
       "use": "@vercel/static"
     }
@@ -10,6 +14,10 @@
     {
       "src": "/logo.png",
       "dest": "/public/logo.png"
+    },
+    {
+      "src": "/(.*\\.(png|jpg|jpeg|gif|svg|ico))",
+      "dest": "/public/$1"
     },
     {
       "src": "/(.*)",
