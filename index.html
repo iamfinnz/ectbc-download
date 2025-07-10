@@ -27,6 +27,7 @@
             background: #4285f4;
             min-height: 100vh;
             overflow-x: hidden;
+            padding: 20px 10px;
         }
 
         /* Animated Background */
@@ -75,6 +76,8 @@
             min-height: 100vh;
             position: relative;
             box-shadow: 0 0 40px rgba(0,0,0,0.2);
+            border-radius: 20px;
+            overflow: hidden;
         }
 
         /* Header */
@@ -85,6 +88,8 @@
             color: white;
             position: relative;
             overflow: hidden;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
         }
 
         .header::before {
@@ -178,7 +183,7 @@
             border: none;
             padding: 1.2rem 2.5rem;
             border-radius: 50px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
             text-decoration: none;
@@ -194,6 +199,7 @@
             overflow: hidden;
             text-transform: uppercase;
             letter-spacing: 1px;
+            white-space: nowrap;
         }
 
         .download-btn::before {
@@ -362,17 +368,22 @@
 
         .instruction-card {
             background: white;
-            border-radius: 20px;
-            padding: 1.8rem;
-            margin-bottom: 1.2rem;
-            border-left: 5px solid #4285f4;
-            transition: all 0.4s ease;
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid #f0f0f0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .instruction-card:nth-child(odd) {
+            border-left: 6px solid #4285f4;
         }
 
         .instruction-card:nth-child(even) {
-            border-left-color: #ea4335;
+            border-left: 6px solid #ea4335;
         }
 
         .instruction-card::before {
@@ -380,77 +391,106 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(66, 133, 244, 0.1), transparent);
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(66, 133, 244, 0.05), transparent);
             border-radius: 50%;
-            transform: translate(30px, -30px);
+            transform: translate(40px, -40px);
+            transition: all 0.4s ease;
         }
 
         .instruction-card:nth-child(even)::before {
-            background: radial-gradient(circle, rgba(234, 67, 53, 0.1), transparent);
+            background: radial-gradient(circle, rgba(234, 67, 53, 0.05), transparent);
         }
 
         .instruction-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border-color: #e0e0e0;
+        }
+
+        .instruction-card:hover::before {
+            transform: translate(20px, -20px) scale(1.2);
+            opacity: 0.8;
         }
 
         .instruction-title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: #333;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.2rem;
+            position: relative;
+            z-index: 2;
         }
 
         .instruction-icon {
-            font-size: 1.5rem;
-            width: 2.5rem;
-            height: 2.5rem;
-            background: #4285f4;
-            border-radius: 50%;
+            font-size: 1.6rem;
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, #4285f4, #1a73e8);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
+            box-shadow: 0 6px 20px rgba(66, 133, 244, 0.3);
+            position: relative;
+            z-index: 2;
         }
 
         .instruction-card:nth-child(even) .instruction-icon {
-            background: #ea4335;
-            box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3);
+            background: linear-gradient(135deg, #ea4335, #d73925);
+            box-shadow: 0 6px 20px rgba(234, 67, 53, 0.3);
         }
 
         .instruction-steps {
             color: #555;
             line-height: 1.8;
+            position: relative;
+            z-index: 2;
         }
 
         .step {
-            margin-bottom: 0.8rem;
-            padding-left: 2rem;
+            margin-bottom: 1rem;
+            padding-left: 2.5rem;
             position: relative;
+            padding-top: 0.2rem;
+            padding-bottom: 0.2rem;
         }
 
         .step::before {
             content: "→";
             position: absolute;
             left: 0;
+            top: 0.2rem;
             color: #4285f4;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
         }
 
         .instruction-card:nth-child(even) .step::before {
             color: #ea4335;
         }
 
+        .step:hover::before {
+            transform: translateX(5px);
+        }
+
         .step strong {
             color: #333;
-            font-weight: 600;
+            font-weight: 700;
+            background: rgba(66, 133, 244, 0.1);
+            padding: 0.1rem 0.4rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .instruction-card:nth-child(even) .step strong {
+            background: rgba(234, 67, 53, 0.1);
         }
 
         /* Warning Section */
@@ -502,6 +542,8 @@
             font-size: 0.9rem;
             border-top: 1px solid #eee;
             background: white;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
         }
 
         .footer p:first-child {
@@ -572,8 +614,18 @@
 
         /* Responsive Design */
         @media (max-width: 480px) {
+            body {
+                padding: 10px 5px;
+            }
+
+            .container {
+                border-radius: 16px;
+            }
+
             .header {
                 padding: 2rem 1rem 1.5rem;
+                border-top-left-radius: 16px;
+                border-top-right-radius: 16px;
             }
 
             .content {
@@ -584,28 +636,35 @@
                 font-size: 1.9rem;
             }
 
-            .stats-section {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .stat-card {
-                padding: 1.2rem;
-            }
-
             .instruction-card {
                 padding: 1.5rem;
             }
 
             .download-btn {
                 padding: 1rem 2rem;
-                font-size: 1.1rem;
+                font-size: 1rem;
+                max-width: 280px;
+            }
+
+            .footer {
+                border-bottom-left-radius: 16px;
+                border-bottom-right-radius: 16px;
             }
         }
 
         @media (max-width: 360px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                border-radius: 12px;
+            }
+
             .header {
                 padding: 1.5rem 0.75rem 1rem;
+                border-top-left-radius: 12px;
+                border-top-right-radius: 12px;
             }
 
             .content {
@@ -618,7 +677,13 @@
 
             .download-btn {
                 padding: 0.9rem 1.8rem;
-                font-size: 1rem;
+                font-size: 0.95rem;
+                max-width: 260px;
+            }
+
+            .footer {
+                border-bottom-left-radius: 12px;
+                border-bottom-right-radius: 12px;
             }
         }
 
